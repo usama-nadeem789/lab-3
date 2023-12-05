@@ -1,0 +1,8 @@
+<p>Title: <%= @book.title %></p>
+<p>Quantity: <%= @book.quantity %></p>
+<p>Authors: <%= @book.authors.pluck(:name).join(', ') %></p>
+
+<%= link_to 'Edit', edit_book_path(@book) %>
+
+<br>
+<%= link_to 'All Books', books_path %>

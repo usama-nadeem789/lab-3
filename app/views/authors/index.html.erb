@@ -1,0 +1,14 @@
+<% @author.each do |author| %>
+  <li>
+    Name: <%= author.name %><br>
+    Book: <%= author.books.pluck(:title)%>
+    <br>
+    <%= link_to 'Show', author_path(author), class: 'p-3 btn btn-info' %>
+    <%= button_to 'Delete', author, method: :delete%>
+
+    <br>
+    <br>
+    <br>
+
+  </li>
+<% end %>

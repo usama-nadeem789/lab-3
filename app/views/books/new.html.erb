@@ -1,0 +1,34 @@
+<br><br><br>
+
+<%= form_with(model: @book, url: books_path, method: :post) do |form| %>
+  <%= form.label :title %>
+  <%= form.text_field :title %>
+
+  <%= form.label :quantity %>
+  <%= form.number_field :quantity %>
+
+  <br>
+  <br>
+  <br>
+  <br>
+  
+  <%= form.label :authors %>
+  <br>
+  <br>
+  <% @authors.each do |author| %>
+    <div>
+      <%= form.check_box :author_ids, { multiple: true }, author.id, nil %>
+      <%= form.label :author_ids, author.name %>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :added_by, value: current_admin.email %>
+
+  <br><br><br>
+
+    <div class="field">
+    <%= form.label :genre %>
+    <%= form.select :genre, Book.genres.keys %>
+  </div>
+  <%= form.submit "Add" %>
+<% end %>

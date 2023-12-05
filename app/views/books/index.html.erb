@@ -1,0 +1,27 @@
+
+<br>
+<br>
+<br>
+<br>
+<%= render 'search_form.html.erb' %>
+<br>
+<br>
+<br>
+<br>
+<% @books.each do |book| %>
+  <li>
+    Title: <%= book.title %><br>
+    Quantity: <%= book.quantity %><br>
+    Authors: <%= book.authors.pluck(:name)%> <br>
+    Genre: <%= book.genre %>
+    <br>
+    <%# link_to 'Show', show_book_path(@book) %>
+    <%= link_to 'Show', book_path(book) %>
+    <%= button_to 'Delete', book, method: :delete, class: 'p-3 btn btn-info' %>
+
+    <br>
+    <br>
+    <br>
+
+  </li>
+<% end %>

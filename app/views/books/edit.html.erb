@@ -1,0 +1,31 @@
+<br>
+<br>
+<br>
+
+<%= form_with(model: @book, url: book_path(@book), method: :patch) do |form| %>
+  <%= form.label :title %>
+  <%= form.text_field :title %>
+
+  <%= form.label :quantity %>
+  <%= form.number_field :quantity %>
+  <br>
+  <br>
+  <br>
+  <%= form.label :authors %>
+  <br>
+  <% @authors.each do |author| %>
+    <div>
+      <%= form.check_box :author_ids, { multiple: true }, author.id, nil %>
+      <%= form.label :author_ids, author.name %>
+    </div>
+  <% end %>
+  <br>
+  <br>
+
+    <div class="field">
+    <%= form.label :genre %>
+    <%= form.select :genre, Book.genres.keys %>
+  </div>
+  
+  <%= form.submit "Update" %>
+<% end %>

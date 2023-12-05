@@ -1,0 +1,20 @@
+<%= search_form_for @q do |f| %>
+  <div class="field">
+    <%= f.label :title_cont, 'Book Title contains' %>
+    <%= f.text_field :title_cont %>
+  </div>
+
+  <div class="field">
+    <%= f.label :quantity_gteq, 'Minimum Quantity' %>
+    <%= f.number_field :quantity_gteq %>
+  </div>
+
+  <!-- Add more search fields as needed -->
+
+  <div class="field">
+    <%= f.label :s, 'Sort by' %>
+    <%= f.select :s, [['Title (asc)', 'title asc'], ['Title (desc)', 'title desc']], {}, class: 'form-control' %>
+  </div>
+
+  <%= f.submit 'Search' %>
+<% end %>

@@ -1,0 +1,9 @@
+<br><br><br>
+
+<%= form_with(model: @author, url: authors_path, method: :post) do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+
+  <br><br><br>
+  <%= form.submit "Add" %>
+<% end %>
