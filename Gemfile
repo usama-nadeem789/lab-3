@@ -59,7 +59,5 @@ gem 'sprockets-rails', '>= 2.3.2'
 
 gem 'devise'
 
-gem 'bootstrap', '~> 5.3.2'
-
 gem 'ransack'
 

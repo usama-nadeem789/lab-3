@@ -1,5 +1,17 @@
-<p>Title: <%= @author.name %></p>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-4">
+    </div>
 
-<%= link_to 'Edit', edit_author_path(@author) %>
-<br>
-<%= link_to 'Show All Authors', authors_path %>
+    <div class="col-4">
+
+      <p class="h4">Title: <%= @author.name %></p>
+
+      <%= link_to 'Edit', edit_author_path(@author), class: 'btn btn-primary my-2' %> <br>
+      <%= link_to 'Show All Authors', authors_path, class: 'btn btn-secondary' %>
+    </div>
+
+    <div class="col-4">
+    </div>
+  </div>
+</div>

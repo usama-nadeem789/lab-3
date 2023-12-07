@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-4">
+    </div>
+
+    <div class="col-4">
+      <p>Title: <%= @genre.title %></p>
+
+      <%= link_to 'Edit', edit_genre_path(@genre), class: "btn btn-primary" %>
+      <br>
+      <%= link_to 'Show All Genres', genres_path, class: "btn btn-secondary mt-2" %>
+    </div>
+
+    <div class="col-4">
+    </div>
+  </div>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_12_05_122959) do
+ActiveRecord::Schema.define(version: 2023_12_06_200326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,9 +45,37 @@ ActiveRecord::Schema.define(version: 2023_12_05_122959) do
     t.integer "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.decimal "rent", default: "0.0"
+    t.integer "rent"
+    t.integer "0"
     t.string "added_by"
     t.string "genre"
+  end
+
+  create_table "books_genres", id: false, force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.bigint "genre_id", null: false
+    t.index ["book_id", "genre_id"], name: "index_books_genres_on_book_id_and_genre_id"
+    t.index ["genre_id", "book_id"], name: "index_books_genres_on_genre_id_and_book_id"
+  end
+
+  create_table "books_students", id: false, force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.bigint "student_id", null: false
+    t.index ["book_id", "student_id"], name: "index_books_students_on_book_id_and_student_id"
+    t.index ["student_id", "book_id"], name: "index_books_students_on_student_id_and_book_id"
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.string "name"
+    t.integer "cnic"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end

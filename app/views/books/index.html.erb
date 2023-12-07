@@ -1,27 +1,43 @@
 
-<br>
-<br>
-<br>
-<br>
-<%= render 'search_form.html.erb' %>
-<br>
-<br>
-<br>
-<br>
-<% @books.each do |book| %>
-  <li>
-    Title: <%= book.title %><br>
-    Quantity: <%= book.quantity %><br>
-    Authors: <%= book.authors.pluck(:name)%> <br>
-    Genre: <%= book.genre %>
-    <br>
-    <%# link_to 'Show', show_book_path(@book) %>
-    <%= link_to 'Show', book_path(book) %>
-    <%= button_to 'Delete', book, method: :delete, class: 'p-3 btn btn-info' %>
 
-    <br>
-    <br>
-    <br>
+<div class="text-center">
 
-  </li>
-<% end %>
+  <div class="row">
+    <div class="col-3 border-end">
+      <%= render 'search_form.html.erb' %>
+    </div>
+    
+    <div class="col-9">
+      <h2 class="my-5"> All Books </h2>
+      <table class="table table-striped mt-5">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Total</th>
+            <th>Rented</th>
+            <th>Available</th>
+            <th>Authors</th>
+            <th>Genres</th>
+            <th>Students</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @books.each do |book| %>
+            <tr>
+              <td> <%= book.title %> </td>
+              <td> <%= book.quantity %> </td>
+              <td> <%= book.rent %> </td>
+              <td> <%= book.quantity - book.rent %> </td>
+              <td> <%= raw(book.authors.pluck(:name).join('<br>')) %> </td>
+              <td> <%= raw(book.genres.pluck(:title).join('<br>')) %> </td>
+              <td> <%= raw(book.students.pluck(:name).join('<br>')) %> </td>
+              <%# link_to 'Show', show_book_path(@book) %>
+              <td> <%= link_to 'Details', book_path(book), class: 'btn btn-info' %> </td>
+              <td> <%= button_to 'Delete', book, method: :delete, class: 'btn btn-info' %> </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

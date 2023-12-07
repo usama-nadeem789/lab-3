@@ -1,8 +1,45 @@
-<p>Title: <%= @book.title %></p>
-<p>Quantity: <%= @book.quantity %></p>
-<p>Authors: <%= @book.authors.pluck(:name).join(', ') %></p>
+<div class="container mt-5">
+  <% if flash[:alert] %>
+    <div class="alert alert-danger">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
 
-<%= link_to 'Edit', edit_book_path(@book) %>
+  <div class="row">
+    <div class="col-4">
+    </div>
 
-<br>
-<%= link_to 'All Books', books_path %>
+    <div class="col-4">
+      <p class="h4">Title: <%= @book.title %></p>
+      <p>Quantity: <%= @book.quantity %></p>
+      <p>Authors: <%= @book.authors.pluck(:name).join(', ') %></p>
+      <p>Genre: <%= @book.genres.pluck(:title).join(', ') %></p>
+      <p>Rented to Students:</p>
+
+      <table class="table">
+        <tbody>
+          <% @book.students.each do |student| %>
+            <tr>
+              <td><%= student.name %></td>
+              <td>
+                <%= form_with(model: @book, url: return_book_book_path(@book), method: :post, local: true) do |f| %>
+                  <%= hidden_field_tag 'student_id', student.id %>
+                  <%= f.submit 'Return', class: 'btn btn-danger btn-sm' %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <%= link_to 'Edit', edit_book_path(@book), class: 'btn btn-primary my-2' %>
+      <br>
+      <%= link_to 'All Books', books_path, class: 'btn btn-secondary' %>
+    </div>
+
+    <div class="col-4">
+    </div>
+  </div>
+
+  <%= render 'lend_book_form' %>
+</div>

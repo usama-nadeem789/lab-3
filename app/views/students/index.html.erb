@@ -15,16 +15,18 @@
         <thead>
           <tr>
             <th>Name</th>
-            <th>Books</th>
+            <th>CNIC</th>
+            <th>Books Rented</th>
           </tr>
         </thead>
         <tbody>
-          <% @author.each do |author| %>
+          <% @student.each do |student| %>
             <tr>
-              <td> <%= author.name %> </td>
-              <td> <%= raw(author.books.pluck(:title).join('<br>')) %> </td>
-              <td> <%= link_to 'Details', author_path(author), class: 'btn btn-info' %> </td>
-              <td> <%= button_to 'Delete', author, method: :delete , class: 'btn btn-info'%> </td>  
+              <td> <%= student.name %> </td>
+              <td> <%= student.cnic %> </td>
+              <td> <%= raw(student.books.pluck(:title).join('<br>')) %> </td>
+              <td> <%= link_to 'Details', student_path(student), class: 'btn btn-info' %> </td>
+              <td> <%= button_to 'Delete', student, method: :delete , class: 'btn btn-info'%> </td>  
             </tr>
           <% end %>
         </tbody>

@@ -1,14 +1,16 @@
 <div class="container">
-  <%= form_with(model: @author, url: authors_path, method: :post, class: "form") do |form| %>
+  <%= form_with(model: @genre, url: genres_path, method: :post, class: "form") do |form| %>
 
     <div class="row mt-5">
+
       <div class="col">
+
       </div>
 
       <div class="col">
         <div class="form-group">
-          <%= form.label :name %>
-          <%= form.text_field :name, class: "form-control", required: true %>
+          <%= form.label :title %>
+          <%= form.text_field :title, class: "form-control", required: true %>
         </div>
 
         <%= form.submit "Add", class: "btn btn-primary mt-3" %>
@@ -21,4 +23,3 @@
 
   <% end %>
 </div>
-

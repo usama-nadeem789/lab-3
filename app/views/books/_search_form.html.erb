@@ -1,19 +1,33 @@
-<%= search_form_for @q do |f| %>
-  <div class="field">
+<h2 class="my-5">Filters</h2>
+<%= search_form_for @q do |f|%>
+  <div class="mb-3">
     <%= f.label :title_cont, 'Book Title contains' %>
     <%= f.text_field :title_cont %>
   </div>
 
-  <div class="field">
+  <div class="mb-3">
     <%= f.label :quantity_gteq, 'Minimum Quantity' %>
     <%= f.number_field :quantity_gteq %>
   </div>
 
-  <!-- Add more search fields as needed -->
+    <div class="mb-3">
+    <%= f.label :quantity_lteq, 'Maximum Quantity' %>
+    <%= f.number_field :quantity_lteq %>
+  </div>
 
-  <div class="field">
-    <%= f.label :s, 'Sort by' %>
-    <%= f.select :s, [['Title (asc)', 'title asc'], ['Title (desc)', 'title desc']], {}, class: 'form-control' %>
+    <div class="mb-3">
+    <%= f.label :student_name_cont, 'Student Name contains' %>
+    <%= f.text_field :students_name_cont %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :s, 'Sort by Title' %>
+    <%= f.select :s, [['Title (asc)', 'title asc'], ['Title (desc)', 'title desc']], {}, class: 'form-select form-select-sm mb-3' %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :s, 'Sort by quantity' %>
+    <%= f.select :s, [['Quantity (asc)', 'quantity asc'], ['Quantity (desc)', 'quantity desc']], {}, class: 'form-select form-select-sm mb-3' %>
   </div>
 
   <%= f.submit 'Search' %>

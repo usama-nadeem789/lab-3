@@ -1,0 +1,23 @@
+<div class="container">
+  <%= form_with(model: @book, url: lend_book_path(@book), method: :post, class: "form") do |f| %>
+
+    <div class="row mt-5">
+      <div class="col-4">
+      </div>
+
+      <div class="col-4">
+        <div class="form-group">
+          <%= f.label :student_ids, "Select Student to lend a book", class: "font-weight-bold" %>
+          <%= f.collection_select(:student_ids, @students, :id, :name, { }, multiple: true, class: 'form-control') %>
+        </div>
+
+        <%= f.submit 'Lend to Selected Students', class: 'btn btn-primary mt-3' %>
+      </div>
+
+      <div class="col-4">
+        
+      </div>
+    </div>
+
+  <% end %>
+</div>

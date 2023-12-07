@@ -1,34 +1,48 @@
-<br><br><br>
+<div class="container">
+  <%= form_with(model: @book, url: books_path, method: :post, class: "form") do |form| %>
 
-<%= form_with(model: @book, url: books_path, method: :post) do |form| %>
-  <%= form.label :title %>
-  <%= form.text_field :title %>
+    <div class="row mt-5">
+      <div class="col">
+      </div>
 
-  <%= form.label :quantity %>
-  <%= form.number_field :quantity %>
+      <div class="col">
+        <div class="form-group">
+          <%= form.label :title %>
+          <%= form.text_field :title, class: "form-control", required: true %>
 
-  <br>
-  <br>
-  <br>
-  <br>
-  
-  <%= form.label :authors %>
-  <br>
-  <br>
-  <% @authors.each do |author| %>
-    <div>
-      <%= form.check_box :author_ids, { multiple: true }, author.id, nil %>
-      <%= form.label :author_ids, author.name %>
+          <%= form.label :quantity, class: "mt-2" %>
+          <%= form.number_field :quantity, class: "form-control", required: true %>
+
+          <%= form.label :authors, class: "mt-2" %>
+          <br>
+          <% @authors.each do |author| %>
+            <div class="form-check">
+              <%= form.check_box :author_ids, { multiple: true, class: "form-check-input" }, author.id, nil %>
+              <%= form.label :author_ids, author.name, class: "form-check-label" %>
+            </div>
+          <% end %>
+
+          <%= form.label :genre, class: "mt-2" %>
+          <br>
+          <% @genres.each do |genre| %>
+            <div class="form-check">
+              <%= form.check_box :genre_ids, { multiple: true, class: "form-check-input" }, genre.id, nil %>
+              <%= form.label :genre_ids, genre.title, class: "form-check-label" %>
+            </div>
+          <% end %>
+        </div>
+
+        <%= form.hidden_field :added_by, value: current_admin.email %>
+        <%= form.hidden_field :rent, value: 0 %>
+
+        <br><br><br>
+
+        <%= form.submit "Add", class: "btn btn-primary mt-3" %>
+      </div>
+
+      <div class="col">
+      </div>
     </div>
+
   <% end %>
-
-  <%= form.hidden_field :added_by, value: current_admin.email %>
-
-  <br><br><br>
-
-    <div class="field">
-    <%= form.label :genre %>
-    <%= form.select :genre, Book.genres.keys %>
-  </div>
-  <%= form.submit "Add" %>
-<% end %>
+</div>
